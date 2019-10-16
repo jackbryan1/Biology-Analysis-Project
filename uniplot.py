@@ -1,9 +1,4 @@
-import gzip
-for l in gzip.open("uniprot_receptor.xml.gz"):
-    print(l.decode().strip())
+from uniplot.cli import cli
 
-from Bio import SeqIO
-
-handle = gzip.open("uniprot_receptor.xml.gz")
-for record in SeqIO.parse(handle, "uniprot-xml"):
-    print(record)
+if __name__ == '__main__':
+    cli()
