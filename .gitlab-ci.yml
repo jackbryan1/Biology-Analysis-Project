@@ -4,8 +4,8 @@ before_script:
   - export PATH="/root/.local/bin:$PATH"
   - pip install --user pipenv
   - pipenv update --dev
+  - pipenv run pytest -W ignore
 
 build:
   script:
     - echo "Success"
-  - pipenv run pytest -W ignore
