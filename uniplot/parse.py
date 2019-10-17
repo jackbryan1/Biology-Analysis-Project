@@ -4,7 +4,7 @@ from Bio import SeqIO
 def uniprot_seqrecords(file_location):
         records = []
 
-        handle = gzip.open("uniprot_receptor.xml.gz")
+        handle = gzip.open(file_location)
         for record in SeqIO.parse(handle, "uniprot-xml"):
             records.append(record)
 
