@@ -5,6 +5,7 @@ import uniplot.parse
 TEST_UNIPROT="./resources/uniprot_sprot_small.xml.gz"
 
 def test_hello_world():
+    """Does nothing useful"""
     assert True
 
 def test_average():

@@ -18,6 +18,7 @@ def names(args):
 def cli():
     """Deals with parsing"""
     parser = argparse.ArgumentParser(prog="uniplot")
+    parser.add_argument('--filename')
 
     subparser = parser.add_subparsers(help="Sub Command Help")
 
