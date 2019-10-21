@@ -8,6 +8,7 @@ def test_hello_world():
     assert True
 
 def test_average():
+    """Tests the average length of proteins"""
     assert uniplot.analysis.average_len(
         uniplot.parse.uniprot_seqrecords(TEST_UNIPROT)
     ) == 302.72222222222223
