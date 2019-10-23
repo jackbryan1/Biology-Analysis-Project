@@ -17,7 +17,7 @@ def cli():
     """Deals with parsing"""
     parser = argparse.ArgumentParser(prog="uniplot")
     parser.add_argument('--filename')
-    parser.add_argument('-depth')
+    parser.add_argument('-depth', type=int)
 
     subparser = parser.add_subparsers(help="Sub Command Help")
 
@@ -27,6 +27,7 @@ def cli():
     subparser.add_parser("plot").set_defaults(func=plot_average_by_taxa)
 
     args = parser.parse_args()
+    print(args)
     args.func(args)
 
 def average(args):
@@ -36,5 +37,5 @@ def average(args):
 
 def plot_average_by_taxa(args):
     """Plots a graph of the average length of proteins in each taxa"""
-    av = analysis.average_len_taxa(parse.uniprot_seqrecords(args.filename))
+    av = analysis.average_len_taxa(parse.uniprot_seqrecords(args.filename), (args.depth - 1))
     plot.plot_bar_show(av)
