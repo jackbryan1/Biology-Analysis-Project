@@ -3,22 +3,21 @@ from . import parse
 from . import analysis
 from . import plot
 
-LOC="uniprot_receptor.xml.gz"
-
 def dump(args):
     """Prints all records"""
-    for record in parse.uniprot_seqrecords(LOC):
+    for record in parse.uniprot_seqrecords(args.filename):
         print(record)
 
 def names(args):
     """Prints all names"""
-    for record in parse.uniprot_seqrecords(LOC):
+    for record in parse.uniprot_seqrecords(args.filename):
         print(record.name)
 
 def cli():
     """Deals with parsing"""
     parser = argparse.ArgumentParser(prog="uniplot")
     parser.add_argument('--filename')
+    parser.add_argument('-depth')
 
     subparser = parser.add_subparsers(help="Sub Command Help")
 
@@ -33,9 +32,9 @@ def cli():
 def average(args):
     """Prints the average length of proteins"""
     print("Average Length is {}".format(
-         analysis.average_len(parse.uniprot_seqrecords(LOC))))
+         analysis.average_len(parse.uniprot_seqrecords(args.filename))))
 
 def plot_average_by_taxa(args):
     """Plots a graph of the average length of proteins in each taxa"""
-    av = analysis.average_len_taxa(parse.uniprot_seqrecords(LOC))
+    av = analysis.average_len_taxa(parse.uniprot_seqrecords(args.filename))
     plot.plot_bar_show(av)
