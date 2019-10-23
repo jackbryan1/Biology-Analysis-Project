@@ -37,5 +37,7 @@ def average(args):
 
 def plot_average_by_taxa(args):
     """Plots a graph of the average length of proteins in each taxa"""
-    av = analysis.average_len_taxa(parse.uniprot_seqrecords(args.filename), (args.depth - 1))
+    if args.depth is not None:
+        args.depth = args.depth - 1
+    av = analysis.average_len_taxa(parse.uniprot_seqrecords(args.filename), (args.depth))
     plot.plot_bar_show(av)

@@ -5,6 +5,8 @@ def average_len(records):
 
 def average_len_taxa(records, depth):
     """Returns the average length for the top level taxa"""
+    if depth is None:
+        depth = int(0)
     record_by_taxa = {}
     for r in records:
         taxa = r.annotations["taxonomy"][depth]
