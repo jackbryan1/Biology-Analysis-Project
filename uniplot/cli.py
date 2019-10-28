@@ -25,7 +25,7 @@ def cli():
     subparser.add_parser("list").set_defaults(func=names, help='lists all names')
     subparser.add_parser("average").set_defaults(func=average, help='calculates average length')
     subparser.add_parser("plot").set_defaults(func=plot_average_by_taxa, help='plots a graph of the average lengths')
-
+    subparser.add_parser('plot_pie').set_defaults(func=plot_length_by_taxa, help='plots a graph of the lengths')
     args = parser.parse_args()
     print(args)
     args.func(args)
@@ -36,6 +36,10 @@ def average(args):
          analysis.average_len(parse.uniprot_seqrecords(args.filename))))
 
 def plot_average_by_taxa(args):
-    """Plots a graph of the average length of proteins in each taxa"""
+    """Plots a graph"""
     av = analysis.average_len_taxa(parse.uniprot_seqrecords(args.filename), (args.depth))
     plot.plot_bar_show(av)
+
+def plot_length_by_taxa(args):
+    length = analysis.len_taxa(parse.uniprot_seqrecords(args.filename), (args.depth))
+    plot.plot_pie_show(length)
