@@ -19,7 +19,12 @@ def cli():
     parser.add_argument('--filename', help='name of the file')
     parser.add_argument('-depth', type=int, help='depth of the graph')
 
-    subparser = parser.add_subparsers(help="Sub Command Help")
+    subparser = parser.add_subparsers(help="Sub Command Help"
+                                           "dump: writes out all data"
+                                           "list: lists all names"
+                                           "average: calculates average length"
+                                           "plot: plots a graph of the average lengths"
+                                           "plot_pie: plots a graph of the lengths")
 
     subparser.add_parser("dump").set_defaults(func=dump, help='writes out all data')
     subparser.add_parser("list").set_defaults(func=names, help='lists all names')
